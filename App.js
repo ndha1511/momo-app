@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import MainView from './src/views/MainView';
+import Home from './src/views/Home';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer> 
+      <Stack.Navigator screenOptions={{headerShown: false}}> 
+        <Stack.Screen name="MainView" component = {MainView} /> 
+        <Stack.Screen name="HomeScreen" component = {Home} /> 
+      </Stack.Navigator> 
+    </NavigationContainer> 
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

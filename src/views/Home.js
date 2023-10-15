@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Button, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 
-export default function Home() {
+export default function Home({navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -54,7 +54,7 @@ export default function Home() {
                             <Image source={require('../imgs/icon/ve-xe-khach.png')} style={styles.imgIcon}></Image>
                             <Text style={styles.txtIcon}>Vé xe khách</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.iconButton}>
+                        <TouchableOpacity style={styles.iconButton} onPress={() => {navigation.navigate('AllServicesScreen')}}>
                             <Image source={require('../imgs/icon/all.png')} style={styles.imgIcon}></Image>
                             <Text style={styles.txtIcon}>Tất cả dịch vụ</Text>
                         </TouchableOpacity>
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
         borderRadius: 13
     },
     center: {
-        
+        flex: 1,
         alignItems: 'center',
     },
     icon: {
@@ -235,12 +235,13 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     imgIcon: {
-        width: 50,
-        height: 50
+        width: 45,
+        height: 45
     },
     txtIcon: {
         textAlign: 'center',
-        marginTop: 3
+        marginTop: 3,
+        fontSize: 11.5
     },
     footer: {
         backgroundColor: '#fff',

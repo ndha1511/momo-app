@@ -11,7 +11,7 @@ export default function ButtonIcon(props) {
 
 const styles = StyleSheet.create({
     iconButton: {
-        width: 85,
+        width: 80,
         height: 80,
         alignItems: 'center',
         marginHorizontal: 8,

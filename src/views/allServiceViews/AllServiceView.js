@@ -27,6 +27,10 @@ export default function AllServicesView({ navigation }) {
         'Dịch vụ y tế', 'Giao thông vận tải', 'Dịch vụ khác'
     ];
 
+    
+
+
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -46,11 +50,7 @@ export default function AllServicesView({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View style={{ backgroundColor: '#fff' }}>
-                    <ScrollView horizontal={true} style={[styles.horizontalSroll, { paddingHorizontal: 5, marginTop: 10 }]}>
-                        {banners.map((banner, index) => (
-                            <ButtonBanner content={banner} key={index}></ButtonBanner>
-                        ))}
-                    </ScrollView>
+                    <ButtonBanner></ButtonBanner>
                 </View>
             </View>
             <ScrollView>
@@ -60,7 +60,7 @@ export default function AllServicesView({ navigation }) {
                     </View>
                     <View style={styles.icon}>
                         {dichVuPhoBienIcons.map((item, index) => (
-                            <ButtonIcon srcImg={item} label={dichVuPhoBienLabels[index]}></ButtonIcon>
+                            <ButtonIcon srcImg={item} label={dichVuPhoBienLabels[index]} key={index}></ButtonIcon>
                         ))}
                     </View>
                 </View>
@@ -227,8 +227,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
 
     },
-    horizontalSroll: {
-        flexDirection: 'row'
-    },
+    
     txtTitle: { marginTop: 10, marginLeft: 10, fontWeight: 'bold' }
 });

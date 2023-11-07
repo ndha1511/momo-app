@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllServicesView from './src/views/allServiceViews/AllServiceView';
+import AllService from './src/views/AllService';
 
 import { Image } from 'react-native';
 
@@ -34,6 +35,7 @@ function MyTab() {
           }
         }}></Tab.Screen>
         <Tab.Screen name='discount' component={Discount} options={{
+          title:'Ưu đãi',
           tabBarIcon: ({focused}) => {
             const iconSource =  focused ? require('./src/imgs/icon/uudaifocus.png') : require('./src/imgs/icon/uu-dai.png')
             return(
@@ -80,6 +82,7 @@ export default function App() {
         <Stack.Screen name="HomeScreen" component = {MyTab} />
         <Stack.Screen name="AllServicesScreen" component={AllServicesView}/>
         <Stack.Screen name="DiscountScreen" component={Discount}/>
+        <Stack.Screen name="AllService" component={AllService}/>
       </Stack.Navigator> 
       
     </NavigationContainer> 

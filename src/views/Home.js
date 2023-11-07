@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native';
 
 const iconData = [
@@ -55,6 +56,8 @@ const headerIcon = [
     { key: 8, src: require('../imgs/icon/tin-nhan.png')},
 ]
 
+const data_view = []
+
 const renderWallet = ({ item }) => (
     <TouchableOpacity style={{flexDirection:'row',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
         <Image source={item.src} style={styles.imgIcon}></Image>
@@ -64,6 +67,7 @@ const renderWallet = ({ item }) => (
 
 
 export default function Home({ navigation }) {
+    const [data, setData] = useState(iconData);
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -81,11 +85,24 @@ export default function Home({ navigation }) {
             <ScrollView style={{ backgroundColor: '#fff', paddingTop: 10 }} showsVerticalScrollIndicator={false}>
                 <FlatList
                     key={'#'}
-                    data={iconData}
+                    data={data}
                     numColumns={4}
                     renderItem={({ item }) => (
                         <View style={styles.item}>
-                            <TouchableOpacity style={styles.iconButton} onPress={() => { if (item.key == 12) { navigation.navigate('AllServicesScreen') } }}>
+                            <TouchableOpacity style={styles.iconButton} onPress={() => { if (item.key == 12) { navigation.navigate('AllService', {data, setData, data_view}) } 
+                                else {
+                                    if(data_view.length <= 0) data_view.push(item);
+                                    else{
+                                        let flag = false;
+                                        for(let i = 0; i < data_view.length; i++) {
+                                            if(data_view[i].key == item.key) 
+                                                flag = true;
+                                        }
+                                        if(!flag) data_view.push(item);
+
+                                    }
+                                    
+                                } }}>
                                 <Image source={item.src} style={styles.imgIcon}></Image>
                                 <Text style={styles.txtIcon}>{item.text}</Text>
                             </TouchableOpacity>

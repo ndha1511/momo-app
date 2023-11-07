@@ -55,7 +55,12 @@ const headerIcon = [
     { key: 8, src: require('../imgs/icon/tin-nhan.png')},
 ]
 
-
+const renderWallet = ({ item }) => (
+    <TouchableOpacity style={{flexDirection:'row',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+        <Image source={item.src} style={styles.imgIcon}></Image>
+        <Text style={styles.txtIcon}>{item.text}</Text>
+    </TouchableOpacity>
+)
 
 
 export default function Home({ navigation }) {

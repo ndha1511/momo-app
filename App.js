@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import Home from './src/views/Home';
 import Discount from './src/views/Discounts';
+import Me from './src/views/Me';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllServicesView from './src/views/allServiceViews/AllServiceView';
+
 import { Image } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -58,7 +60,7 @@ function MyTab() {
             )
           }
         }}></Tab.Screen>
-        <Tab.Screen name='Tôi' component={AllServicesView} options={{
+        <Tab.Screen name='Tôi' component={Me} options={{
           tabBarIcon: ({focused}) => {
             const iconSource =  focused ? require('./src/imgs/icon/toifocus.png') : require('./src/imgs/icon/toi.png')
             return(

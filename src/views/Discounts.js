@@ -43,35 +43,6 @@ const data_all=[
       {id:11,name:'Đặt GoFood trên MoMo',icon:require('../imgs/icon/gofood.jpg'),image:require('../imgs/image/kh_nu_giam30toida20.jpg'),title:'Giảm 30%',des:'Tối đa 40.000đ cho đơn từ 220.000đ'},
   
 ]
-const AllDataTab = ({ data }) => (
-  <View>
-    {data.map((item) => (
-      <TouchableOpacity
-        style={{
-          width: '90%',
-          height: 120,
-          flexDirection: 'row',
-          borderRadius: 5,
-          marginBottom: 10,
-          backgroundColor: 'white',
-          alignSelf: 'center',
-        }}
-        key={item.id}
-      >
-        <Image source={item.image} style={{ width: '30%', height: '100%', resizeMode: 'contain' }} />
-        <View style={{ width: '70%', height: '100%', flexDirection: 'column', justifyContent: 'space-evenly', paddingLeft: 5 }}>
-          <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-            <Image source={item.icon} style={{ width: 20, height: 20, resizeMode: 'contain' }} />
-            <Text style={{ color: 'gray' }}>{item.name}</Text>
-          </View>
-          <Text style={{ fontWeight: 'bold', width: '100%' }}>{item.title}</Text>
-          <Text style={{ fontSize: 12, width: '100%' }}>{item.des}</Text>
-        </View>
-      </TouchableOpacity>
-    ))}
-  </View>
-);
-
 const data=[
   {
     id:1,
@@ -127,6 +98,36 @@ const your_gift=[
   {id:2,name:'Rau Má Mix',icon:require('../imgs/icon/rau-ma-mix.jpg'),title:'Giảm 40K',des:'Rau má mix - Giảm 40k',date:'HSD: 30/09/2021'},
   {id:3,name:'Thanh toán hóa đơn',icon:require('../imgs/icon/thanh-toan-hoa-don.png'),title:'Giảm 40K',des:'thanh toán hóa đơn - Giảm 40k',date:'HSD: 30/09/2021'},
 ]
+const AllDataTab = ({ data }) => (
+  <View>
+    {data.map((item) => (
+      <TouchableOpacity
+        style={{
+          width: '90%',
+          height: 120,
+          flexDirection: 'row',
+          borderRadius: 5,
+          marginBottom: 10,
+          backgroundColor: 'white',
+          alignSelf: 'center',
+        }}
+        key={item.id}
+      >
+        <Image source={item.image} style={{ width: '30%', height: '100%', resizeMode: 'contain' }} />
+        <View style={{ width: '70%', height: '100%', flexDirection: 'column', justifyContent: 'space-evenly', paddingLeft: 5 }}>
+          <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Image source={item.icon} style={{ width: 20, height: 20, resizeMode: 'contain' }} />
+            <Text style={{ color: 'gray' }}>{item.name}</Text>
+          </View>
+          <Text style={{ fontWeight: 'bold', width: '100%' }}>{item.title}</Text>
+          <Text style={{ fontSize: 12, width: '100%' }}>{item.des}</Text>
+          <TouchableOpacity style={{justifyContent:'center',alignItems:'center',width:'30%',alignSelf:'flex-end'}}><Text style={{fontSize:12,fontWeight:'bold',color:'#eb2d9d'}}>Thu thập</Text></TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    ))}
+  </View>
+);
+
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -223,38 +224,40 @@ export default function Discount() {
                         </ScrollView>                      
           </View>
           <View style={styles.body}>
-               <View style={styles.gift_container}>
-                      <TouchableOpacity style={styles.gift_code_input}>
-                              <Image source={require('../imgs/icon/nhap-ma.png')} style={styles.gift_icon}/>
-                              <View style={[styles.gift_text_container]}>
-                                  <Text style={{fontWeight:'bold'}}>Nhập mã</Text>
-                                  <Text style={{fontSize:10}}>Mã ưu đãi,mã giới thiệu</Text>
-                              </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.gift_code_input}>
-                              <Image source={require('../imgs/icon/qua-cua-ban.png')} style={styles.gift_icon}/>
-                              <View style={[styles.gift_text_container]}>
-                                  <Text style={{fontWeight:'bold'}}>Quà của bạn</Text>
-                                  <Text  style={{fontSize:10}} >có 8 ưu đãi</Text>
-                              </View>
-                      </TouchableOpacity>
-                </View>
-                <View style={[styles.menu_category]}>
-                    <View   style={{width:'100%'}}>
-                    <FlatList
-                          data={menu}
-                          horizontal
-                          keyExtractor={(item) => item.id.toString()}
-                          renderItem={({ item }) => (
-                            <TouchableOpacity style={styles.menu_item}>
-                              <Image source={item.icon} style={styles.menu_icon} />
-                              <Text style={[styles.menu_text, { fontSize: 10, textAlign: 'center' }]}>{item.name}</Text>
-                            </TouchableOpacity>
-                      )}
-                    />
-                            
-                    </View>
-                </View>
+               <View style={{width:'100%',height:130,backgroundColor:'white',justifyContent:'center',alignItems:'center'}}>
+                      <View style={styles.gift_container}>
+                              <TouchableOpacity style={styles.gift_code_input}>
+                                      <Image source={require('../imgs/icon/nhap-ma.png')} style={styles.gift_icon}/>
+                                      <View style={[styles.gift_text_container]}>
+                                          <Text style={{fontWeight:'bold'}}>Nhập mã</Text>
+                                          <Text style={{fontSize:10}}>Mã ưu đãi,mã giới thiệu</Text>
+                                      </View>
+                              </TouchableOpacity>
+                              <TouchableOpacity style={styles.gift_code_input}>
+                                      <Image source={require('../imgs/icon/qua-cua-ban.png')} style={styles.gift_icon}/>
+                                      <View style={[styles.gift_text_container]}>
+                                          <Text style={{fontWeight:'bold'}}>Quà của bạn</Text>
+                                          <Text  style={{fontSize:10}} >có 8 ưu đãi</Text>
+                                      </View>
+                              </TouchableOpacity>
+                        </View>
+                        <View style={[styles.menu_category]}>
+                            <View   style={{width:'100%'}}>
+                            <FlatList
+                                  data={menu}
+                                  horizontal
+                                  keyExtractor={(item) => item.id.toString()}
+                                  renderItem={({ item }) => (
+                                    <TouchableOpacity style={styles.menu_item}>
+                                      <Image source={item.icon} style={styles.menu_icon} />
+                                      <Text style={[styles.menu_text, { fontSize: 10, textAlign: 'center' }]}>{item.name}</Text>
+                                    </TouchableOpacity>
+                              )}
+                            />
+                                    
+                            </View>
+                       </View>               
+               </View>
                 <ImageBackground source={require('../imgs/image/background.jpg')} style={[styles.main_event]}>
                     <View style={[styles.kh_data_container]}>
                         <View style={{flexDirection:'row',width:'100%'}}>
@@ -262,7 +265,7 @@ export default function Discount() {
                             <Image source={require('../imgs/icon/arrow.png')} style={{height:'100%',resizeMode:'contain'}}></Image>
                        </View>
                     </View>
-                    <View    style={{position:'absolute',top:'40%'}} >
+                    <View    style={{position:'absolute',top:'35%'}} >
                     <ScrollView style={{ flexDirection: 'row', flexWrap: 'wrap' }} horizontal>
                           {discount_data.map((item) => (
                             <TouchableOpacity style={styles.data_item} key={item.id}>
@@ -290,7 +293,7 @@ export default function Discount() {
                 <View style={{ backgroundColor: '#F1F1F3' }}>
                         {data.map((item) => (
                           <View key={item.id} style={[styles.kh_male_container]}>
-                            <View style={{ width: '100%', flexDirection: 'row', marginLeft: 20 }}>
+                            <View style={{ width: '100%', flexDirection: 'row' }}>
                               <Image source={require('../imgs/icon/hoa-dao.jpg')} style={{ height: '100%', resizeMode: 'contain' }} />
                               <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black', marginLeft: -15 }}>{item.type}</Text>
                               <Image source={require('../imgs/icon/arrow.png')} style={{ height: '100%', resizeMode: 'contain' }} />
@@ -309,7 +312,7 @@ export default function Discount() {
                                       <Text style={{ width: '100%', fontSize: 14, height: 30 }}>
                                         {dataItem.des}
                                       </Text>
-                                      <View style={{ width: '100%', height: 30, justifyContent: 'flex-end', alignItems: 'flex-end', marginTop: 10 }}>
+                                      <View style={{ width: '100%', height: 30, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
                                         <TouchableOpacity style={{ padding: 5, borderWidth: 1, borderColor: '#eb2d9d', borderRadius: 5, marginRight: 10 }}>
                                           <Text style={{ color: '#eb2d9d', fontWeight: 'bold' }}>Thu thập</Text>
                                         </TouchableOpacity>
@@ -425,10 +428,10 @@ const styles = StyleSheet.create({
   },
   header:{
     width:'100%',
-    backgroundColor: '#F1F1F3',
+    backgroundColor: 'white',
     justifyContent:'flex-start',
     alignItems:'center',
-    height:200,
+    height:180,
     
   
   },
@@ -451,7 +454,7 @@ const styles = StyleSheet.create({
   },
   input_search:{
     position: 'absolute',
-    top: '5%',
+    top: '15%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -472,10 +475,11 @@ const styles = StyleSheet.create({
 
   },
   gift_container:{
-    width:'90%',height:80,
+    width:'90%',height:70,
     marginTop:-30,
     flexDirection:'row',
     justifyContent:'space-between',
+    alignItems:'center',
     
    
     
@@ -490,6 +494,8 @@ const styles = StyleSheet.create({
     borderRadius:5,
     borderWidth:1,
     borderColor:'#888',
+    borderBottomColor:'gray',
+    borderBottomWidth:5,
     borderRadius:15
   },
   gift_icon:{
@@ -539,7 +545,7 @@ const styles = StyleSheet.create({
   },
   main_event:{
     width:'100%',
-    height:500,
+    height:550,
     borderWidth:1,
     backgroundImage:require('../imgs/image/background.jpg')
   },
@@ -551,13 +557,11 @@ const styles = StyleSheet.create({
   },
   kh_male_container:{
     width:'100%',
-  
-   
   },
   
   data_item:{
     width:WIDTH*0.4,
-    height:HEIGHT*0.45,
+    height:HEIGHT*0.3,
     backgroundColor:'#ffffff',
     margin:5,
     marginTop:0,

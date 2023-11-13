@@ -236,8 +236,8 @@ export default function AllService({ navigation, route }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} > 
-                    <Text>go</Text>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.btn_back}> 
+                    <Image source={require('../imgs/icon/left.png')} style={{width: 20, height: 20}}></Image>
                 </TouchableOpacity>
                 <View style={styles.search_view}>
                     <Image source={require('../imgs/icon/kinh-lup.png')} style={{ width: 25, height: 25 }}></Image>
@@ -252,7 +252,7 @@ export default function AllService({ navigation, route }) {
                     </View>
                     <TouchableOpacity style={styles.btn_header} onPress={() => {setIsEdit(!isEdit)}}>
                         <Text style={{ fontWeight: 'bold' }}>{isEdit ? 'Thu gọn' : 'Chỉnh sửa'}</Text>
-                        <Text>V</Text>
+                        <Image source={isEdit?require('../imgs/icon/top.png'):require('../imgs/icon/bottom.png')} style={{width: 10, height: 10, marginTop: 5}}></Image>
                     </TouchableOpacity>
                 </View>
                 <View style={{ display: isEdit ? 'flex' : 'none' }}>
@@ -406,4 +406,12 @@ const styles = StyleSheet.create({
         marginTop: 3,
         fontSize: 10
     },
+    btn_back: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        width: 35,
+        height: 35,
+        borderRadius: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 })

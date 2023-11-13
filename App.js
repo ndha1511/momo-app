@@ -97,7 +97,7 @@ export default function App() {
           <Stack.Screen name='Login1' component={Login1} />
           <Stack.Screen name='Login2' component={Login2} />
           <Stack.Screen name="HomeScreen" component={MyTab} />
-          <Stack.Screen name="DiscountScreen" component={Discount} />
+          {/* <Stack.Screen name="DiscountScreen" component={Discount} /> */}
           <Stack.Screen name="AllService" component={AllService} />
         </Stack.Navigator>
 

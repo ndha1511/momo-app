@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native';
+import { Context } from '../../App';
 
 const iconData = [
     { key: 1, src: require('../imgs/icon/chuyen-tien.png'), text: 'Chuyển tiền' },
@@ -68,6 +70,13 @@ const renderWallet = ({ item }) => (
 
 export default function Home({ navigation }) {
     const [data, setData] = useState(iconData);
+    const {user, setUser} = useContext(Context);
+    const [balance, setBalance] = useState(user.balance);
+    const [show, setShow] = useState(true);
+    const formattedAmount = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+      }).format(balance);
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -80,7 +89,20 @@ export default function Home({ navigation }) {
                         )
                     })}
                 </View>
+                <View style={styles.header2}>
+                    <View style={{flexDirection:'row', alignItems: 'center'}}>
+                        <TouchableOpacity onPress={() => setShow(!show)}>
+                            <Image source={show?require('../imgs/icon/eye-gach.png'):require('../imgs/icon/eye.png')} style={{width: 15, height: 15}}></Image>
+                        </TouchableOpacity>
+                        <Text style={{fontWeight: 'bold', marginLeft: 5}}>{show?'******':formattedAmount}</Text>
+                    </View>
+                    <View>
+                        <Text>Quản lý</Text>
+                    </View>
+                </View>
+                
             </View>
+            
           
             <ScrollView style={{ backgroundColor: '#fff', paddingTop: 10 }} showsVerticalScrollIndicator={false}>
                 <FlatList
@@ -207,13 +229,13 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: 60,
+        height: 100,
         //backgroundColor: '#325340',
         //paddingBottom: 20
     },
     header1: {
         width: '100%',
-        height: '100%',
+        height: '65%',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -304,5 +326,20 @@ const styles = StyleSheet.create({
     text2: {
         fontSize: 12,
         color: 'gray'
+    },
+    header2: {
+        height: '35%',
+        backgroundColor: '#fff',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        shadowColor: 'gray',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.6,
+        elevation: 6,
+        
     }
 });

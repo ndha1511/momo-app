@@ -41,7 +41,7 @@ export default function Login1({navigation}) {
                     placeholderTextColor={'gray'} onChangeText={(value) => { setErr('') ;setPhone(value)}}
                 ></TextInput>
             </View>
-            <Text style={{color: 'grown'}}>{err}</Text>
+            <Text style={{color: 'red'}}>{err}</Text>
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
                 <Text style={{color: '#e2b2d7', fontSize: 22}}>TIẾP TỤC</Text>
             </TouchableOpacity>

@@ -13,6 +13,7 @@ import Login1 from './src/views/Login1';
 import Login2 from './src/views/Login2';
 
 
+
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();

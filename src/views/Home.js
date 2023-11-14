@@ -34,6 +34,7 @@ const iconBanner = [
     { key: 1, src: require('../imgs/img/uu-dai-1.png'), text1: '100% hoàn tiền đến 9.999.9...', text2: 'Chuyển 111Đ: nhận hoàn tiền và ...', textBtn: 'Xem ngay' },
     { key: 2, src: require('../imgs/img/uu-dai-2.png'), text1: 'Giới thiệu MoMo rinh quà', text2: 'Rủ bạn đông - Quà càng đậm', textBtn: 'Xem ngay' },
     { key: 3, src: require('../imgs/img/uu-dai-1.png'), text1: '100% hoàn tiền đến 9.999.9...', text2: 'Chuyển 111Đ: nhận hoàn tiền và ...', textBtn: 'Xem ngay' },
+
 ]
 
 const boxUudai = [
@@ -73,7 +74,7 @@ export default function Home({ navigation }) {
     const {user, setUser} = useContext(Context);
     const [balance, setBalance] = useState(user.balance);
     const [show, setShow] = useState(true);
-    const formattedAmount = new Intl.NumberFormat('vi-VN', {
+    const formattedAmount = new Intl.NumberFormat('vi-VN', { 
         style: 'currency',
         currency: 'VND'
       }).format(balance);
@@ -142,7 +143,7 @@ export default function Home({ navigation }) {
                         key={'#'}
                         data={iconDataHorizontal}
                         horizontal={true}
-                        showsHorizontalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={true}
                         renderItem={({ item }) => (
                             <View style={styles.item}>
                                 <TouchableOpacity style={styles.iconButton}>

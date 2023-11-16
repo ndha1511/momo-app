@@ -21,7 +21,7 @@ export default function Category ({ item }) {
         data={item.data}
         keyExtractor={(dataItem) => dataItem.id.toString()}
         horizontal
-        renderItem={renderDataItem}
+        renderItem={renderDataItem}  
        
       />
     </View>

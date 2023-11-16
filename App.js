@@ -11,6 +11,8 @@ import React, { createContext, useContext, useState } from 'react';
 import { Image } from 'react-native';
 import Login1 from './src/views/Login1';
 import Login2 from './src/views/Login2';
+import ChuyenTien from './src/views/ChuyenTien';
+import ChuyenTien2 from './src/views/ChuyenTien2';
 
 
 
@@ -98,6 +100,9 @@ export default function App() {
           <Stack.Screen name='Login1' component={Login1} />
           <Stack.Screen name='Login2' component={Login2} />
           <Stack.Screen name="HomeScreen" component={MyTab} />
+          <Stack.Screen name='ChuyenTien' component={ChuyenTien} />
+          <Stack.Screen name='ChuyenTien2' component={ChuyenTien2} />
+          
           {/* <Stack.Screen name="DiscountScreen" component={Discount} /> */}
           <Stack.Screen name="AllService" component={AllService} />
         </Stack.Navigator>

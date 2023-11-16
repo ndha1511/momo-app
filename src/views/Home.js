@@ -74,7 +74,7 @@ export default function Home({ navigation }) {
     const {user, setUser} = useContext(Context);
     const [balance, setBalance] = useState(user.balance);
     const [show, setShow] = useState(true);
-    const formattedAmount = new Intl.NumberFormat('vi-VN', { 
+    const formattedAmount = new Intl.NumberFormat('vi-VN', {  
         style: 'currency',
         currency: 'VND'
       }).format(balance);
@@ -112,7 +112,8 @@ export default function Home({ navigation }) {
                     numColumns={4}
                     renderItem={({ item }) => (
                         <View style={styles.item}>
-                            <TouchableOpacity style={styles.iconButton} onPress={() => { if (item.key == 12) { navigation.navigate('AllService', {data, setData, data_view}) } 
+                            <TouchableOpacity style={styles.iconButton} onPress={() => { if (item.key == 12) { navigation.navigate('AllService', {data, setData, data_view})}
+                                 
                                 else {
                                     if(data_view.length <= 0) data_view.push(item);
                                     else{
@@ -124,6 +125,7 @@ export default function Home({ navigation }) {
                                         if(!flag) data_view.push(item);
 
                                     }
+                                    if(item.key == 1) navigation.navigate('ChuyenTien'); 
                                     
                                 } }}>
                                 <Image source={item.src} style={styles.imgIcon}></Image>

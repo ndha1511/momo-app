@@ -26,11 +26,11 @@ const menu = [
 export default function AllService({ navigation, route }) {
     const { data, setData, data_view } = route.params;
     const [isEdit, setIsEdit] = useState(false);
-    const [dataChange, setData_change] = useState(false);
+    const [data_new, setData_new] = useState(data);
     
-    useEffect(() => setData(data), data)
-    data.pop();
-    data.push({ key: 12, src: require('../imgs/icon/luu-danh-sach.png'), text: 'Lưu danh sách' })
+    
+    data_new.pop();
+    data_new.push({ key: 12, src: require('../imgs/icon/luu-danh-sach.png'), text: 'Lưu danh sách' })
     const flatListRef = useRef(null);
     const [selectedId, setSelectedId] = useState(1);
     const scrollToComponent = (index) => {
@@ -236,7 +236,11 @@ export default function AllService({ navigation, route }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.btn_back}> 
+                <TouchableOpacity onPress={() => {
+                    data_new.pop();
+                    data_new.push({ key: 12, src: require('../imgs/icon/all.png'), text: 'Tất cả dịch vụ' }); 
+                    navigation.goBack()
+                    }} style={styles.btn_back}> 
                     <Image source={require('../imgs/icon/left.png')} style={{width: 20, height: 20}}></Image>
                 </TouchableOpacity>
                 <View style={styles.search_view}>
@@ -257,7 +261,7 @@ export default function AllService({ navigation, route }) {
                 </View>
                 <View style={{ display: isEdit ? 'flex' : 'none' }}>
                     <FlatList
-                        data={data}
+                        data={data_new}
                         numColumns={4}
                         keyExtractor={(item) => item.key}
                         renderItem={({ item }) => {

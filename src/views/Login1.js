@@ -37,7 +37,7 @@ export default function Login1({navigation}) {
                 <Image source={require('../imgs/icon/momo-login.png')} style={{width: 150, height: 150}}></Image>
             </View>
             <View style={styles.view_input}>
-                <TextInput keyboardType="numeric" maxLength={10} placeholder="Nhập số điện thoại" style={[styles.input, {outline: 'none'}]}
+                <TextInput keyboardType="numeric" maxLength={10} placeholder="Nhập số điện thoại" style={[styles.input]}
                     placeholderTextColor={'gray'} onChangeText={(value) => { setErr('') ;setPhone(value)}}
                 ></TextInput>
             </View>
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#b2026e',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 40
     },
     view_input: {
         width: '90%',

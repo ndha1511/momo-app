@@ -1,7 +1,5 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { SectionList } from "react-native";
-import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Context } from "../../App";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -9,11 +7,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function ChuyenTien2({ navigation, route }) {
     const { item } = route.params;
     const { user, setUser } = useContext(Context);
-    const [money, setMoney] = useState('');
+    const [money, setMoney] = useState(0);
     const [isMoney, setIsMoney] = useState(false);
+    const [message, setMessage] = useState('');
     const chuyenTien = () => {
         if(isMoney) {
-            
+            navigation.navigate('ChuyenTien3', {item, money, message});
         }
     }
     useEffect(() => {
@@ -42,8 +41,8 @@ export default function ChuyenTien2({ navigation, route }) {
                     <TextInput
                         keyboardType="numeric"
                         placeholder="0đ"
-                        value={money}
-                        style={[styles.input, { outline: 'none' }]}
+                        value={10}
+                        style={[styles.input]}
                         placeholderTextColor={'gray'}
                         onChangeText={(value) => {
                             setMoney(value);
@@ -55,7 +54,7 @@ export default function ChuyenTien2({ navigation, route }) {
                             justifyContent: 'space-between',
                             paddingHorizontal: 10, borderRadius: 10
                         }}>
-                            <TextInput placeholder="Nhập hoặc chọn bên dưới" placeholderTextColor={'gray'} style={{ height: 60, outline: 'none', width: '80%', fontSize: 16 }}></TextInput>
+                            <TextInput placeholder="Nhập hoặc chọn bên dưới" placeholderTextColor={'gray'} style={{ height: 60, width: '80%', fontSize: 16 }} onChangeText={setMessage}></TextInput>
                             <Image source={require('../imgs/icon/mic2.png')} style={{ width: 25, height: 25 }}></Image>
                         </View>
                         <View style={{
@@ -94,7 +93,8 @@ export default function ChuyenTien2({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 40
     },
     header: {
         width: '100%',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         width: 30,
         height: 30,
-        borderRadius: '50%',
+        borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
     },

@@ -81,7 +81,7 @@ export default function Me({ navigation,route}) {
               <View style={{width:'100%',justifyContent:'flex-start',alignItems:'center'}}>
                     <TouchableOpacity style={{width:'100%',flexDirection:'row',height:90,backgroundColor:'white',borderRadius:20,borderBottomColor:'gray',borderStyle:'solid',borderBottomWidth:5}}>
                           <View style={{width:'30%',height:'100%',justifyContent:'center',alignItems:'center'}}>
-                              <Image source={require('../imgs/image/avt.jpg')} style={{width:60,height:60,borderRadius:'50%'}}></Image>
+                              <Image source={require('../imgs/image/avt.jpg')} style={{width:60,height:60,borderRadius:50}}></Image>
                           </View>
                           <View style={{width:'40%',height:'100%',justifyContent:'space-evenly'}}>
                               <Text style={{fontSize:20,fontWeight:'bold'}}>Ly Phi Minh</Text>

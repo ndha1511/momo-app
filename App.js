@@ -13,6 +13,9 @@ import Login1 from './src/views/Login1';
 import Login2 from './src/views/Login2';
 import ChuyenTien from './src/views/ChuyenTien';
 import ChuyenTien2 from './src/views/ChuyenTien2';
+import ChuyenTien3 from './src/views/ChuyenTien3';
+import Success from './src/views/Success';
+import Lsgd from './src/views/Lsgd';
 
 
 
@@ -61,7 +64,8 @@ function MyTab() {
           )
         }
       }}></Tab.Screen>
-      <Tab.Screen name='Lịch sử GD' component={AllService} options={{
+      <Tab.Screen name='Lịch sử GD' component={Lsgd} options={{
+        unmountOnBlur: true,
         tabBarIcon: ({ focused }) => {
           const iconSource = focused ? require('./src/imgs/icon/lsgdfocus.png') : require('./src/imgs/icon/lich-su-gd.png')
           return (
@@ -102,6 +106,8 @@ export default function App() {
           <Stack.Screen name="HomeScreen" component={MyTab} />
           <Stack.Screen name='ChuyenTien' component={ChuyenTien} />
           <Stack.Screen name='ChuyenTien2' component={ChuyenTien2} />
+          <Stack.Screen name='ChuyenTien3' component={ChuyenTien3} />
+          <Stack.Screen name='Success' component={Success} />
           
           {/* <Stack.Screen name="DiscountScreen" component={Discount} /> */}
           <Stack.Screen name="AllService" component={AllService} />

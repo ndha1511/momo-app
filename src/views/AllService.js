@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { SectionList } from "react-native";
+import { useRef, useState } from "react";
 import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native";
+
 
 const menu = [
     { key: 1, value: 'Bạn vừa xem' },
@@ -24,7 +23,7 @@ const menu = [
 
 
 export default function AllService({ navigation, route }) {
-    const { data, setData, data_view } = route.params;
+    const { data, data_view } = route.params;
     const [isEdit, setIsEdit] = useState(false);
     const [data_new, setData_new] = useState(data);
     
@@ -230,9 +229,9 @@ export default function AllService({ navigation, route }) {
     const xoaData = (item) => {
         const index = data.indexOf(item);
         data[index] = {}
-        setData(data);
+        // setData(data);
         console.log(data)
-    }
+    }   
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -245,7 +244,7 @@ export default function AllService({ navigation, route }) {
                 </TouchableOpacity>
                 <View style={styles.search_view}>
                     <Image source={require('../imgs/icon/kinh-lup.png')} style={{ width: 25, height: 25 }}></Image>
-                    <TextInput placeholder="Tìm kiếm dịch vụ" style={{ width: '80%', outline: 'none', padding: 5 }} placeholderTextColor={'gray'}></TextInput>
+                    <TextInput placeholder="Tìm kiếm dịch vụ" style={{ width: '80%', padding: 5 }} placeholderTextColor={'gray'}></TextInput>
                 </View>
             </View>
             <View style={{ backgroundColor: '#fff' }}>
@@ -290,6 +289,7 @@ export default function AllService({ navigation, route }) {
                     ref={flatListRef}
                     horizontal={true}
                     data={menu}
+                    showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
                         const backgroundColor = item.key === selectedId ? '#fff7fa' : '#f0f0f0';
                         const color = item.key === selectedId ? '#c55696' : 'black';
@@ -354,6 +354,7 @@ export default function AllService({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 40
     },
     header: {
         width: '100%',
@@ -414,7 +415,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         width: 35,
         height: 35,
-        borderRadius: '50%',
+        borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
     }

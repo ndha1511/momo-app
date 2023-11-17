@@ -72,12 +72,12 @@ const renderWallet = ({ item }) => (
 export default function Home({ navigation }) {
     const [data, setData] = useState(iconData);
     const {user, setUser} = useContext(Context);
-    const [balance, setBalance] = useState(user.balance);
+    // const [balance, setBalance] = useState(user.balance);
     const [show, setShow] = useState(true);
     const formattedAmount = new Intl.NumberFormat('vi-VN', {  
         style: 'currency',
         currency: 'VND'
-      }).format(balance);
+      }).format(user.balance);
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -112,7 +112,7 @@ export default function Home({ navigation }) {
                     numColumns={4}
                     renderItem={({ item }) => (
                         <View style={styles.item}>
-                            <TouchableOpacity style={styles.iconButton} onPress={() => { if (item.key == 12) { navigation.navigate('AllService', {data, setData, data_view})}
+                            <TouchableOpacity style={styles.iconButton} onPress={() => { if (item.key == 12) { navigation.navigate('AllService', {data, data_view})}
                                  
                                 else {
                                     if(data_view.length <= 0) data_view.push(item);
@@ -145,7 +145,7 @@ export default function Home({ navigation }) {
                         key={'#'}
                         data={iconDataHorizontal}
                         horizontal={true}
-                        showsHorizontalScrollIndicator={true}
+                        showsHorizontalScrollIndicator={false}
                         renderItem={({ item }) => (
                             <View style={styles.item}>
                                 <TouchableOpacity style={styles.iconButton}>
@@ -227,7 +227,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        marginTop: 40
        
     },
     header: {

@@ -1,7 +1,5 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { SectionList } from "react-native";
+import { useContext, useEffect, useState } from "react";
 import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native";
 import { Context } from "../../App";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -47,7 +45,7 @@ export default function ChuyenTien({navigation}) {
 
                 style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image source={require("../imgs/icon/back.png")} style={{ width: 20, height: 20, borderRadius: '50%' }}></Image></TouchableOpacity>
+                    <Image source={require("../imgs/icon/back.png")} style={{ width: 20, height: 20, borderRadius: 50 }}></Image></TouchableOpacity>
                 
                 <View style={styles.search_view}>
                     <Image source={require('../imgs/icon/kinh-lup.png')} style={{ width: 25, height: 25 }}></Image>
@@ -56,7 +54,7 @@ export default function ChuyenTien({navigation}) {
                 <Image source={require("../imgs/icon/mic.png")} style={{ width: 30, height: 30, borderRadius: 5 }}></Image>
                 <Image source={{ uri: user.avatar }} style={{ width: 35, height: 35, borderRadius: 15, marginLeft: 10 }}></Image>
             </View>
-            <ScrollView style={{ marginTop: 15, width: '95%' }}>
+            <View style={{ marginTop: 15, width: '95%' }}>
                 <View style={styles.view_box}>
                     <View style={styles.view_box_child}>
                         <Text style={{ fontWeight: 'bold' }}>Đề xuất</Text>
@@ -73,7 +71,7 @@ export default function ChuyenTien({navigation}) {
                                     navigation.navigate('ChuyenTien2', {item});
                                 }}>
                                     <Image source={{ uri: item.avatar }} style={{ width: 40, height: 40, borderRadius: 20 }}></Image>
-                                    <Text>{item.name}</Text>
+                                    <Text>{item.name}</Text> 
                                 </TouchableOpacity>
                             );
                         }}
@@ -115,7 +113,7 @@ export default function ChuyenTien({navigation}) {
                 <View style={{width: '100%', height: 300, marginTop: 25}}>
                     <Image source={require('../imgs/image/chuyen-tien.png')} style={{width: '100%', height: 100, borderRadius: 15}}></Image>
                 </View>
-            </ScrollView>
+            </View>
         </LinearGradient>
     )
 }
@@ -124,7 +122,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 40
     },
     header: {
         flexDirection: 'row',

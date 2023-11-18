@@ -3,9 +3,12 @@ import { Text, View, StyleSheet, Image ,TextInput,TouchableOpacity,ImageBackgrou
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import { SelectList } from 'react-native-dropdown-select-list'
+import { useContext } from 'react';
+import { Context } from '../../App';
 
 export default function Me({ navigation,route}) {  
   const [selected, setSelected] = React.useState(false);
+  const {user, setUser} = useContext(Context);
   
   
   const dataWallet = [
@@ -81,11 +84,11 @@ export default function Me({ navigation,route}) {
               <View style={{width:'100%',justifyContent:'flex-start',alignItems:'center'}}>
                     <TouchableOpacity style={{width:'100%',flexDirection:'row',height:90,backgroundColor:'white',borderRadius:20,borderBottomColor:'gray',borderStyle:'solid',borderBottomWidth:5}}>
                           <View style={{width:'30%',height:'100%',justifyContent:'center',alignItems:'center'}}>
-                              <Image source={require('../imgs/image/avt.jpg')} style={{width:60,height:60,borderRadius:50}}></Image>
+                              <Image source={{uri: user.avatar}} style={{width:60,height:60,borderRadius:50}}></Image>
                           </View>
                           <View style={{width:'40%',height:'100%',justifyContent:'space-evenly'}}>
-                              <Text style={{fontSize:20,fontWeight:'bold'}}>Ly Phi Minh</Text>
-                              <Text style={{fontSize:15}}>0396664136</Text>
+                              <Text style={{fontSize:18,fontWeight:'bold'}}>{user.fullName}</Text>
+                              <Text style={{fontSize:15}}>{user.phoneNumber}</Text>
                               <View style={{width:'60%',height:25,justifyContent:'center',alignItems:'center',backgroundColor:'#4DC41D',borderRadius:10}}>
                                   <Text style={{color:'white',width:'100%',textAlign:'center'}}>Đã xác thực</Text>
                               </View>
@@ -152,7 +155,12 @@ export default function Me({ navigation,route}) {
                  renderItem={renderOrther}
               />
               </View>    
-              <TouchableOpacity style={{width:'100%',justifyContent:'center',alignItems:'center',marginTop:10,backgroundColor:'white',height:50,borderRadius:20}}>
+              <TouchableOpacity style={{width:'100%',justifyContent:'center',alignItems:'center',marginTop:10,backgroundColor:'white',height:50,borderRadius:20}}
+              onPress={() => {
+                setUser({});
+                navigation.navigate('Login1');
+              }}
+              >
                 <Text style={{textAlign:'center',fontWeight:'bold'}}>Đăng xuất</Text>
               </TouchableOpacity>                      
           </View>       

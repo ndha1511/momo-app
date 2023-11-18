@@ -41,7 +41,7 @@ export default function ChuyenTien2({ navigation, route }) {
                     <TextInput
                         keyboardType="numeric"
                         placeholder="0đ"
-                        value={10}
+                        value={money}  
                         style={[styles.input]}
                         placeholderTextColor={'gray'}
                         onChangeText={(value) => {

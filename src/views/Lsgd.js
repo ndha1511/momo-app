@@ -8,7 +8,7 @@ export default function Lsgd() {
     const { user, setUser } = useContext(Context);
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch("https://654b36785b38a59f28eeae64.mockapi.io/User/" + user.id + "/Transaction")
+        fetch("https://654b36785b38a59f28eeae64.mockapi.io/User/" + user.id +"/Transaction?sortBy=date&order=desc")
             .then(resp => {
                 if (resp.ok) {
                     return resp.json();
@@ -43,7 +43,7 @@ export default function Lsgd() {
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image source={item.type == true ? require('../imgs/icon/receiver.png') : require('../imgs/icon/sender.png')} style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center' }}></Image>
                                     <View style={{ height: '100%', marginLeft: 10 }}>
-                                        <Text style={{ fontWeight: 'bold' }}>{item.type == true ? 'Chuyển tiền đến ' + item.receiver : 'Nhận tiền từ ' + item.sender}</Text>
+                                        <Text style={{ fontWeight: 'bold', width: 200 }}>{item.type == true ? 'Chuyển tiền đến ' + item.receiver : 'Nhận tiền từ ' + item.sender}</Text>
                                         <Text style={{ color: 'gray' }}>{date.getHours() + ':' + date.getMinutes() + ' - ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + (date.getYear() + 1900)}</Text>
                                         <Text style={{ color: 'gray' }}>Số dư ví: {formattedAmount}</Text>
                                     </View>

@@ -10,10 +10,8 @@ import React, { createContext, useContext, useState } from 'react';
 import { Image } from 'react-native';
 import Login1 from './src/views/Login1';
 import Login2 from './src/views/Login2';
-<<<<<<< HEAD
 import Detail from './src/views/Detail';
 import MyGift from './src/views/MyGift';
-=======
 import ChuyenTien from './src/views/ChuyenTien';
 import ChuyenTien2 from './src/views/ChuyenTien2';
 import ChuyenTien3 from './src/views/ChuyenTien3';
@@ -21,7 +19,7 @@ import Success from './src/views/Success';
 import Lsgd from './src/views/Lsgd';
 import Fail from './src/views/Fail';
 import ChiTietgd from './src/views/ChiTietgd';
->>>>>>> 1d5daee956ab6fa9dd8b354e3ec730d6104bd040
+
 
 
 
@@ -113,18 +111,14 @@ export default function App() {
           <Stack.Screen name='Login1' component={Login1} />
           <Stack.Screen name='Login2' component={Login2} />
           <Stack.Screen name="HomeScreen" component={MyTab} />
-<<<<<<< HEAD
+
           <Stack.Screen name="Detail" component={Detail} />
-=======
           <Stack.Screen name='ChuyenTien' component={ChuyenTien} />
           <Stack.Screen name='ChuyenTien2' component={ChuyenTien2} />
           <Stack.Screen name='ChuyenTien3' component={ChuyenTien3} />
           <Stack.Screen name='Success' component={Success} />
           <Stack.Screen name='Fail' component={Fail} />
           <Stack.Screen name='ctgd' component={ChiTietgd} />
-          
-          {/* <Stack.Screen name="DiscountScreen" component={Discount} /> */}
->>>>>>> 1d5daee956ab6fa9dd8b354e3ec730d6104bd040
           <Stack.Screen name="AllService" component={AllService} />
           <Stack.Screen name="MyGift" component={MyGift} />
         </Stack.Navigator>

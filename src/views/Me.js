@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useState, useEffect, useRef, useContext,createContext } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list'
 import { Context } from "../../App";
-export default function Me() {  
+export default function Me({navigation}) {  
   const [selected, setSelected] = React.useState(false);  
 
   const { user, setUser } = useContext(Context);

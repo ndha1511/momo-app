@@ -109,17 +109,17 @@ export default function Detail({ navigation, route }) {
         }]
      const  goBack=()=> {     
             navigation.goBack();
-            route.params.setMyDiscount(MyDiscount);
+            //route.params.setMyDiscount(MyDiscount);
           }
     return (
         <View style={styles.container}>
 
             <ImageBackground source={{ uri: data.image }} style={{ width: '100%', height: 220, borderWidth: 1, resizeMode: 'stretch' }}>
-                <TouchableOpacity style={{ width: '10%', height: 30, justifyContent: 'center', alignItems: 'center', padding: 10, backgroundColor: 'gray', position: 'absolute', top: 50, left: 20 }} onPress={goBack}>
-                    <Image source={require('../imgs/icon/left.png')} style={{ height: 30, width: 30, borderRadius: '50%' }}></Image>
+                <TouchableOpacity style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center', padding: 10, backgroundColor: 'gray', position: 'absolute', top: 50, left: 20, borderRadius: 25 }} onPress={goBack}>
+                    <Image source={require('../imgs/icon/left.png')} style={{ height: 30, width: 30, borderRadius: 50 }}></Image>
                 </TouchableOpacity>
             </ImageBackground>
-            <ScrollView style={{ width: '100%', marginTop: -40 }} >
+            
 
 
 
@@ -174,11 +174,12 @@ export default function Detail({ navigation, route }) {
                         data={dataRecommend}
                         keyExtractor={(dataItem) => dataItem.id.toString()}
                         horizontal
+                        showsVerticalScrollIndicator={false}
                         renderItem={({ item: dataItem }) => (
                             <TouchableOpacity
                                 style={{
                                     width: 300,
-                                    height: '100%',
+                                    height: '60%',
                                     flexDirection: 'row',
                                     marginRight: 20,                                  
 
@@ -199,13 +200,13 @@ export default function Detail({ navigation, route }) {
                         )}
                     />
                 </View>
-                <TouchableOpacity style={{ width: '90%', height: 50, backgroundColor: '#eb2d9d', alignSelf: 'center', justifyContent: 'center', alignItems: 'center', marginTop: 70 }} onPress={()=>{
+                <TouchableOpacity style={{ width: '90%', height: 50, backgroundColor: '#eb2d9d', alignSelf: 'center', justifyContent: 'center', alignItems: 'center', marginTop: 20, position: 'absolute', bottom: 0 }} onPress={()=>{
             addMyDiscount({data});
             
           }}>
                     <Text style={{ fontWeight: 'bold', color: 'white', fontSize: 16 }}>{handleCheckAvalable(data.id) === true ? "Dùng ngay" : "Thu thập"}</Text>
                 </TouchableOpacity>
-            </ScrollView >
+            
         </View >
 
 

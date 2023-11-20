@@ -25,11 +25,11 @@ export default function MyGift({ navigation, route }) {
 
             <ImageBackground source={require('../imgs/image/background_me.png')} style={{ width: '100%', height:100, borderWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ width: '100%', height: '50%', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row' }}>
-                    <TouchableOpacity style={{ width: '10%', height: '100%', justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: '50%' }} onPress={() => navigation.navigate("discount")}>
+                    <TouchableOpacity style={{ width: '10%', height: '100%', justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: 50 }} onPress={() => navigation.navigate("discount")}>
                         <Image source={require('../imgs/icon/left.png')} style={{ height: 30, width: 30, resizeMode: 'contain' }}></Image>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', width: '50%', alignSelf: 'center', textAlign: 'center' }}>Quà của tôi</Text>
-                    <TouchableOpacity style={{ width: '10%', height: '100%', justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: '50%' }} onPress={() => navigation.navigate("discount")}>
+                    <TouchableOpacity style={{ width: '10%', height: '100%', justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: 50 }} onPress={() => navigation.navigate("discount")}>
                         <Image source={require('../imgs/icon/forder.png')} style={{ height: 30, width: 30, resizeMode: 'contain' }}></Image>
                     </TouchableOpacity>
 

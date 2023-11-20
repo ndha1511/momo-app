@@ -7,10 +7,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllService from './src/views/AllService';
 import React, { createContext, useContext, useState } from 'react';
-
 import { Image } from 'react-native';
 import Login1 from './src/views/Login1';
 import Login2 from './src/views/Login2';
+import Detail from './src/views/Detail';
+import MyGift from './src/views/MyGift';
 
 
 
@@ -49,7 +50,9 @@ function MyTab() {
           )
         }
       }}></Tab.Screen>
-      <Tab.Screen name='discount' component={Discount} options={{
+      <Tab.Screen name='discount' 
+    
+      component={Discount} options={{
         title: 'Ưu đãi',
         tabBarIcon: ({ focused }) => {
           const iconSource = focused ? require('./src/imgs/icon/uudaifocus.png') : require('./src/imgs/icon/uu-dai.png')
@@ -57,7 +60,8 @@ function MyTab() {
             <Image source={iconSource}
               style={{ width: 30, height: 30 }} />
           )
-        }
+        },
+      
       }}></Tab.Screen>
       <Tab.Screen name='Lịch sử GD' component={AllService} options={{
         tabBarIcon: ({ focused }) => {
@@ -98,8 +102,9 @@ export default function App() {
           <Stack.Screen name='Login1' component={Login1} />
           <Stack.Screen name='Login2' component={Login2} />
           <Stack.Screen name="HomeScreen" component={MyTab} />
-          {/* <Stack.Screen name="DiscountScreen" component={Discount} /> */}
+          <Stack.Screen name="Detail" component={Detail} />
           <Stack.Screen name="AllService" component={AllService} />
+          <Stack.Screen name="MyGift" component={MyGift} />
         </Stack.Navigator>
 
       </NavigationContainer>

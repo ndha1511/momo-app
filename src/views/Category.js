@@ -3,11 +3,9 @@ import { View, Text, Image, TouchableOpacity, FlatList, SafeAreaView ,StyleSheet
 import DataItem from './DataItem'; // Import DataItem component
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-export default function Category ({ item }) {
- 
-  
-  const renderDataItem = ({ item: dataItem }) => (
-    <DataItem dataItem={dataItem} />
+export default function Category ({ item ,navigation}) { 
+  const renderDataItem = ({ item: dataItem ,navigation}) => (
+    <DataItem dataItem={dataItem} navigation={navigation} />
   );
   return (
   <View style={[styles.kh_male_container]}>
@@ -21,7 +19,11 @@ export default function Category ({ item }) {
         data={item.data}
         keyExtractor={(dataItem) => dataItem.id.toString()}
         horizontal
-        renderItem={renderDataItem}
+        renderItem={
+          ({ item: dataItem }) => (
+            <DataItem dataItem={dataItem} navigation={navigation} />
+          )
+        }
        
       />
     </View>

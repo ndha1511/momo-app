@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Dimensions, Image, TextInput, TouchableOpacity, ImageBackground, FlatList, SectionList, ScrollView, SafeAreaView } from 'react-native';
-import { useState, useEffect, useRef } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { useState, useEffect, useRef, useContext,createContext } from 'react';
 import Banner from './Banner';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import DataItem from './DataItem';
 import Category from './Category';
 import Slide from './Slide';
-const Tab = createBottomTabNavigator();
+import { Context } from "../../App";
+
 
 const images = [
   { key: 'image1', image: require('../imgs/image/khuyen-mai-chuyen-bay.jpg') },
@@ -69,17 +67,20 @@ const AllDataTab = ({ data }) => (
     ))}
   </View>
 );
-const renderCategoryItem = ({ item }) => (
-  <Category item={item} />
-);
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-export default function Discount() {
+export const  MyDiscountContext = createContext();
+
+export default function Discount({ navigation,route }) {
   const [data, setData] = useState([])
   const [data_all, setDataAll] = useState([])
-
-
   const [activeTab, setActiveTab] = useState(1);
+  const [MyDiscount, setMyDiscount] = useState({});
+  const { user, setUser } = useContext(Context);
+  const updateValue = (value) => {
+    setMyDiscount(value);
+  };
+  
   function getDataOfUuDaiAnData(jsonData) {
     const uuDaiAnData = jsonData.find((item) => item.type === "Ưu đãi ăn data");
     if (uuDaiAnData) {
@@ -93,29 +94,50 @@ export default function Discount() {
       .then(data => {
         setDataAll(data);
       });
-  }, []);
+  }, [MyDiscount.discounts]);
   useEffect(() => {
     fetch("https://654bc03b5b38a59f28efa753.mockapi.io/discount_type")
       .then(response => response.json())
       .then(data => {
         setData(data);
-
       });
   }, []);
+
+    useEffect(() => {
+      if (user !== null ) {      
+        var id = user.phoneNumber;
+        
+        fetch("https://6554f19563cafc694fe73d69.mockapi.io/MyDiscount/" + id)
+          .then(response => response.json())
+          .then(data => {
+            setMyDiscount(data);
+            
+          }).catch((err) => console.log(err));
+
+      }
+    },[]);
+
+    
+    
+
+ 
+    console.log(MyDiscount);
   const discount_data = getDataOfUuDaiAnData(data);
   return (
+    <MyDiscountContext.Provider value={{MyDiscount, setMyDiscount}}>
     <View style={styles.container}>
       <ScrollView style={{ width: '100%' }} >
         <View style={[styles.header]}>
-          <View style={styles.input_search}>
+          <TouchableOpacity style={styles.input_search}>
             <Image
               source={require('../imgs/icon/kinh-lup.png')}
               style={{ height: '60%', width: '10%', resizeMode: 'contain' }}
             />
-            <TextInput placeholder={'Tìm kiếm ưu đãi...'} style={{ height: '100%', width: '95%' }} />
-          </View>
-          <Slide  data={images}/>
+            <Text  style={{ height: '100%', width: '95%',marginTop:20}} >Tìm kiếm ưu đãi...</Text>
+          </TouchableOpacity>
+          <Slide data={images} />
         </View>
+        
         <View style={styles.body}>
           <View style={{ width: '100%', height: 130, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.gift_container}>
@@ -126,11 +148,12 @@ export default function Discount() {
                   <Text style={{ fontSize: 10 }}>Mã ưu đãi,mã giới thiệu</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.gift_code_input}>
+              <TouchableOpacity style={styles.gift_code_input} onPress={()=>navigation.navigate("MyGift",{"id":user.phoneNumber})}>
                 <Image source={require('../imgs/icon/qua-cua-ban.png')} style={styles.gift_icon} />
                 <View style={[styles.gift_text_container]}>
                   <Text style={{ fontWeight: 'bold' }}>Quà của bạn</Text>
-                  <Text style={{ fontSize: 10 }} >có 8 ưu đãi</Text>
+                  <Text style={{ fontSize: 10 }}>có {MyDiscount && MyDiscount.discounts && MyDiscount.discounts.length} ưu đãi</Text>
+
                 </View>
               </TouchableOpacity>
             </View>
@@ -147,7 +170,6 @@ export default function Discount() {
                     </TouchableOpacity>
                   )}
                 />
-
               </View>
             </View>
           </View>
@@ -164,7 +186,7 @@ export default function Discount() {
                 keyExtractor={(item) => item.id.toString()}
                 horizontal
                 renderItem={({ item }) => (
-                  <DataItem dataItem={item} />
+                  <DataItem dataItem={item} navigation={navigation} />
 
                 )}
               />
@@ -176,10 +198,11 @@ export default function Discount() {
               <FlatList
                 data={data}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={renderCategoryItem}
+                renderItem={({ item }) => (
+                  <Category item={item} navigation={navigation} />
+                )}
               />
             </View>
-
           </View>
           <View style={{ width: '100%', height: 150, backgroundColor: '#F1F1F3' }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black', marginLeft: 15 }}>Quà Của bạn</Text>
@@ -219,7 +242,6 @@ export default function Discount() {
             <Banner data={banner} />
           </SafeAreaView>
           <SafeAreaView style={{ width: '100%' }}>
-
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 50 }}>
               <TouchableOpacity onPress={() => setActiveTab(1)} style={{ width: '50%', height: '100%', alignItems: 'center', justifyContent: 'center', borderBottomWidth: activeTab === 1 ? 2 : 0, borderColor: '#EE4EAC' }}>
                 <Text style={{ paddingHorizontal: 20, fontWeight: activeTab === 1 ? 'bold' : 'normal' }}>Tất cả</Text>
@@ -234,12 +256,12 @@ export default function Discount() {
             </View>
           </SafeAreaView>
         </View>
+        
       </ScrollView>
 
     </View>
-
-
-
+    </MyDiscountContext.Provider>
+   
   );
 }
 

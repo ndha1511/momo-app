@@ -1,16 +1,29 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image ,TextInput,TouchableOpacity,ImageBackground,FlatList,SectionList,ScrollView,SafeAreaView} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
+import { useState, useEffect, useRef, useContext,createContext } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list'
+import { Context } from "../../App";
+export default function Me() {  
+  const [selected, setSelected] = React.useState(false);  
 
-export default function Me({ navigation,route}) {  
-  const [selected, setSelected] = React.useState(false);
-  
-  
+  const { user, setUser } = useContext(Context);
+  function formatVND(amount) {
+    if (typeof amount !== 'number') {
+        return 'Invalid input';
+    }
+
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+        minimumFractionDigits: 0,
+    });
+
+    return formatter.format(amount);
+}
   const dataWallet = [
-    {key:'1',name:'Ví momo',iamge:require('../imgs/icon/vi-momo.png'),money:1000},
-    {key:'2',name:'Vietinbak',iamge:require('../imgs/icon/viettinbank.png'),money:1000},
+    {key:'1',name:'Ví momo',iamge:require('../imgs/icon/vi-momo.png'),money:formatVND(user.balance)},
+    {key:'2',name:'Vietinbak',iamge:require('../imgs/icon/viettinbank.png'),money:formatVND(1000000)},
   ]
   const dataExtention=[
     {key:'1',name:'Điểm tin cậy Momo',des:'cập nhật quyền lợi tài chính của bạn',iamge:require('../imgs/icon/diem-momo-tin-cay.png')},
@@ -31,7 +44,7 @@ export default function Me({ navigation,route}) {
               <Image source={item.iamge} style={{width:30,height:30,marginLeft:20}}></Image>
               <Text style={{textAlign:'right',marginLeft:10}}>{item.name}</Text>
           </View>
-          <Text style={{width:50,height:20,marginRight:20}}>{item.money}</Text>
+          <Text style={{width:100,height:20,marginRight:20}}>{item.money}</Text>
     </View>
     </TouchableOpacity>
   )
@@ -62,7 +75,6 @@ export default function Me({ navigation,route}) {
     </TouchableOpacity>
   )
   
-
   const ListWallet = () => (
     <FlatList 
                  style={{width:'100%',marginTop:10}}
@@ -70,9 +82,10 @@ export default function Me({ navigation,route}) {
                  renderItem={renderWallet}
     />
   )
+
   return (
       <View style={styles.container}>
-       
+        
         <ImageBackground source={require('../imgs/image/background_me.png')} style={{width:'100%',height:100,borderWidth:1}}></ImageBackground>
        
 
@@ -84,8 +97,8 @@ export default function Me({ navigation,route}) {
                               <Image source={require('../imgs/image/avt.jpg')} style={{width:60,height:60,borderRadius:'50%'}}></Image>
                           </View>
                           <View style={{width:'40%',height:'100%',justifyContent:'space-evenly'}}>
-                              <Text style={{fontSize:20,fontWeight:'bold'}}>Ly Phi Minh</Text>
-                              <Text style={{fontSize:15}}>0396664136</Text>
+                              <Text style={{fontSize:20,fontWeight:'bold'}}>{user.fullName}</Text>
+                              <Text style={{fontSize:15}}>{user.phoneNumber}</Text>
                               <View style={{width:'60%',height:25,justifyContent:'center',alignItems:'center',backgroundColor:'#4DC41D',borderRadius:10}}>
                                   <Text style={{color:'white',width:'100%',textAlign:'center'}}>Đã xác thực</Text>
                               </View>

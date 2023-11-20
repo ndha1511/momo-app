@@ -12,7 +12,6 @@ export default function Detail({ navigation, route }) {
     const [data, setData] = useState({});
     const [MyDiscount, setMyDiscount] = useState();
     const [isCheck, setIsCheck] = useState(false);
- 
     const handleCheckAvalable = (id) => {
         if(MyDiscount!==undefined){
             if (  MyDiscount.discounts !== undefined) {

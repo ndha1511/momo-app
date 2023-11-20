@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image ,TextInput,TouchableOpacity,ImageBackgrou
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useState, useEffect, useRef, useContext,createContext } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list'
+<<<<<<< HEAD
 import { Context } from "../../App";
 export default function Me() {  
   const [selected, setSelected] = React.useState(false);  
@@ -21,6 +22,16 @@ export default function Me() {
 
     return formatter.format(amount);
 }
+=======
+import { useContext } from 'react';
+import { Context } from '../../App';
+
+export default function Me({ navigation,route}) {  
+  const [selected, setSelected] = React.useState(false);
+  const {user, setUser} = useContext(Context);
+  
+  
+>>>>>>> 1d5daee956ab6fa9dd8b354e3ec730d6104bd040
   const dataWallet = [
     {key:'1',name:'Ví momo',iamge:require('../imgs/icon/vi-momo.png'),money:formatVND(user.balance)},
     {key:'2',name:'Vietinbak',iamge:require('../imgs/icon/viettinbank.png'),money:formatVND(1000000)},
@@ -94,10 +105,14 @@ export default function Me() {
               <View style={{width:'100%',justifyContent:'flex-start',alignItems:'center'}}>
                     <TouchableOpacity style={{width:'100%',flexDirection:'row',height:90,backgroundColor:'white',borderRadius:20,borderBottomColor:'gray',borderStyle:'solid',borderBottomWidth:5}}>
                           <View style={{width:'30%',height:'100%',justifyContent:'center',alignItems:'center'}}>
-                              <Image source={require('../imgs/image/avt.jpg')} style={{width:60,height:60,borderRadius:'50%'}}></Image>
+                              <Image source={{uri: user.avatar}} style={{width:60,height:60,borderRadius:50}}></Image>
                           </View>
                           <View style={{width:'40%',height:'100%',justifyContent:'space-evenly'}}>
+<<<<<<< HEAD
                               <Text style={{fontSize:20,fontWeight:'bold'}}>{user.fullName}</Text>
+=======
+                              <Text style={{fontSize:18,fontWeight:'bold'}}>{user.fullName}</Text>
+>>>>>>> 1d5daee956ab6fa9dd8b354e3ec730d6104bd040
                               <Text style={{fontSize:15}}>{user.phoneNumber}</Text>
                               <View style={{width:'60%',height:25,justifyContent:'center',alignItems:'center',backgroundColor:'#4DC41D',borderRadius:10}}>
                                   <Text style={{color:'white',width:'100%',textAlign:'center'}}>Đã xác thực</Text>
@@ -165,7 +180,12 @@ export default function Me() {
                  renderItem={renderOrther}
               />
               </View>    
-              <TouchableOpacity style={{width:'100%',justifyContent:'center',alignItems:'center',marginTop:10,backgroundColor:'white',height:50,borderRadius:20}}>
+              <TouchableOpacity style={{width:'100%',justifyContent:'center',alignItems:'center',marginTop:10,backgroundColor:'white',height:50,borderRadius:20}}
+              onPress={() => {
+                setUser({});
+                navigation.navigate('Login1');
+              }}
+              >
                 <Text style={{textAlign:'center',fontWeight:'bold'}}>Đăng xuất</Text>
               </TouchableOpacity>                      
           </View>       

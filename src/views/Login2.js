@@ -36,7 +36,7 @@ export default function Login2({navigation}) {
             </View>
             <View style={styles.view_input}>
                 <Image source={require('../imgs/icon/lock.png')} style={{width: "20%", height: '60%'}} resizeMode="contain"></Image>
-                <TextInput keyboardType="numeric" maxLength={6} placeholder="Nhập mật khẩu" style={[styles.input, {outline: 'none'}]}
+                <TextInput keyboardType="numeric" maxLength={6} placeholder="Nhập mật khẩu" style={[styles.input]}
                     placeholderTextColor={'gray'} secureTextEntry={true} onChangeText={(value) => { setErr('') ;setPass(value)}}
                 ></TextInput>
             </View>
@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#b2026e',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 40
     },
     view_input: {
         width: '90%',

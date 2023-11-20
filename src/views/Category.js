@@ -19,12 +19,9 @@ export default function Category ({ item ,navigation}) {
         data={item.data}
         keyExtractor={(dataItem) => dataItem.id.toString()}
         horizontal
-        renderItem={
-          ({ item: dataItem }) => (
-            <DataItem dataItem={dataItem} navigation={navigation} />
-          )
-        }
-       
+
+        renderItem={renderDataItem}  
+
       />
     </View>
   </View>

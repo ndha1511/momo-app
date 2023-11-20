@@ -39,72 +39,106 @@ export default function ChuyenTien3({ navigation, route }) {
         }
         setErr('');
         const newBalance = Number(balance) - Number(money);
-        fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + user.id, {
-            method: 'PUT',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ balance: newBalance })
-        }).then(res => {
-            if (res.ok) {
-                var currentDate = new Date();
-                
-                const data = {
-                    transactionId: currentTimeLong,
-                    type: true,
-                    amount: money,
-                    date: currentDate,
-                    sender: user.fullName,
-                    receiver: item.fullName,
-                    newBalance: newBalance,
-                    message: message
-                }
-                fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + user.id + '/Transaction', {
-                    method: 'POST',
-                    headers: { 'content-type': 'application/json' },
-                    body: JSON.stringify(data)
-                }).then(res => {
-                    if (res.ok) {
-                        const balance_receiver = Number(item.balance) + Number(money);
-                        fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + item.id, {
-                            method: 'PUT',
-                            headers: { 'content-type': 'application/json' },
-                            body: JSON.stringify({ balance: balance_receiver })
-                        }).then(res => {
-                            if (res.ok) {
-                                var currentDate = new Date();
-                               
-                               
-                                const data = {
-                                    transactionId: currentTimeLong,
-                                    type: false,
-                                    amount: money,
-                                    date: currentDate,
-                                    sender: user.fullName,
-                                    receiver: item.fullName,
-                                    newBalance: balance_receiver,
-                                    message: message
-                                }
-                                fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + item.id + '/Transaction', {
-                                    method: 'POST',
-                                    headers: { 'content-type': 'application/json' },
-                                    body: JSON.stringify(data)
-                                }).then(res => {if(res.ok) {
-                                    user.balance = newBalance;
-                                    setUser(user);
-                                    console.log(user.balance);
-                                    navigation.navigate('Success', {money, item, currentDate, currentTimeLong});
-                                }})
-                            }
-                        }).catch(err => console.log(err))
+        if (newBalance < 0) {
+            var currentDate = new Date();
 
-                    }
-                })
-                .catch(err => console.log(err))
+            const data = {
+                transactionId: currentTimeLong,
+                type: true,
+                amount: money,
+                date: currentDate,
+                sender: user.fullName,
+                receiver: item.fullName,
+                senderId: user.id,
+                receiverId: item.id,
+                newBalance: balance,
+                message: message,
+                status: false
             }
-            // handle error
-        }).catch(error => {
-            // handle error
-            console.log(error)
-        })
+            fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + user.id + '/Transaction', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(resp => {
+                if (resp.ok)
+                    navigation.navigate('Fail', { money, item, currentDate, currentTimeLong });
+            })
+        } else {
+            fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + user.id, {
+                method: 'PUT',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ balance: newBalance })
+            }).then(res => {
+                if (res.ok) {
+                    var currentDate = new Date();
+
+                    const data = {
+                        transactionId: currentTimeLong,
+                        type: true,
+                        amount: money,
+                        date: currentDate,
+                        sender: user.fullName,
+                        receiver: item.fullName,
+                        senderId: user.id,
+                        receiverId: item.id,
+                        newBalance: newBalance,
+                        message: message,
+                        status: true
+                    }
+                    fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + user.id + '/Transaction', {
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).then(res => {
+                        if (res.ok) {
+                            const balance_receiver = Number(item.balance) + Number(money);
+                            fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + item.id, {
+                                method: 'PUT',
+                                headers: { 'content-type': 'application/json' },
+                                body: JSON.stringify({ balance: balance_receiver })
+                            }).then(res => {
+                                if (res.ok) {
+                                    var currentDate = new Date();
+
+
+                                    const data = {
+                                        transactionId: currentTimeLong,
+                                        type: false,
+                                        amount: money,
+                                        date: currentDate,
+                                        sender: user.fullName,
+                                        receiver: item.fullName,
+                                        senderId: user.id,
+                                        receiverId: item.id,
+                                        newBalance: balance_receiver,
+                                        message: message,
+                                        status: true
+                                    }
+                                    fetch('https://654b36785b38a59f28eeae64.mockapi.io/User/' + item.id + '/Transaction', {
+                                        method: 'POST',
+                                        headers: { 'content-type': 'application/json' },
+                                        body: JSON.stringify(data)
+                                    }).then(res => {
+                                        if (res.ok) {
+                                            user.balance = newBalance;
+                                            setUser(user);
+                                            console.log(user.balance);
+                                            navigation.navigate('Success', { money, item, currentDate, currentTimeLong });
+                                        }
+                                    })
+                                }
+                            }).catch(err => console.log(err))
+
+                        }
+                    })
+                        .catch(err => console.log(err))
+                }
+                // handle error
+            }).catch(error => {
+                // handle error
+                console.log(error)
+            })
+        }
 
     }
     return (

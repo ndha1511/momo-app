@@ -49,7 +49,7 @@ export default function ChuyenTien({navigation}) {
                 
                 <View style={styles.search_view}>
                     <Image source={require('../imgs/icon/kinh-lup.png')} style={{ width: 25, height: 25 }}></Image>
-                    <TextInput placeholder="Tìm số điện thoại" style={{ width: '80%', outline: 'none', padding: 5 }} placeholderTextColor={'gray'}></TextInput>
+                    <TextInput placeholder="Tìm số điện thoại" style={{ width: '80%', padding: 5 }} placeholderTextColor={'gray'}></TextInput>
                 </View>
                 <Image source={require("../imgs/icon/mic.png")} style={{ width: 30, height: 30, borderRadius: 5 }}></Image>
                 <Image source={{ uri: user.avatar }} style={{ width: 35, height: 35, borderRadius: 15, marginLeft: 10 }}></Image>

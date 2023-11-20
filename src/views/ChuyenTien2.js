@@ -1,15 +1,24 @@
 import { useContext, useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Context } from "../../App";
 import { LinearGradient } from 'expo-linear-gradient';
+
+const messages = [
+    {key: 1, value: 'Trả nợ nha'},
+    {key: 2, value: 'Chuyển tiền cà phê'},
+    {key: 3, value: 'Chuyển tiền ăn trưa'},
+    {key: 4, value: 'Tiền tiêu vặt'}
+]
 
 
 export default function ChuyenTien2({ navigation, route }) {
     const { item } = route.params;
     const { user, setUser } = useContext(Context);
-    const [money, setMoney] = useState(0);
+    const [money, setMoney] = useState('');
     const [isMoney, setIsMoney] = useState(false);
     const [message, setMessage] = useState('');
+   
+    
     const chuyenTien = () => {
         if(isMoney) {
             navigation.navigate('ChuyenTien3', {item, money, message});
@@ -41,7 +50,7 @@ export default function ChuyenTien2({ navigation, route }) {
                     <TextInput
                         keyboardType="numeric"
                         placeholder="0đ"
-                        value={money}  
+                        value={money.toString()}  
                         style={[styles.input]}
                         placeholderTextColor={'gray'}
                         onChangeText={(value) => {
@@ -54,7 +63,7 @@ export default function ChuyenTien2({ navigation, route }) {
                             justifyContent: 'space-between',
                             paddingHorizontal: 10, borderRadius: 10
                         }}>
-                            <TextInput placeholder="Nhập hoặc chọn bên dưới" placeholderTextColor={'gray'} style={{ height: 60, width: '80%', fontSize: 16 }} onChangeText={setMessage}></TextInput>
+                            <TextInput placeholder="Nhập hoặc chọn bên dưới" placeholderTextColor={'gray'} value={message} style={{ height: 60, width: '80%', fontSize: 16 }} onChangeText={setMessage}></TextInput>
                             <Image source={require('../imgs/icon/mic2.png')} style={{ width: 25, height: 25 }}></Image>
                         </View>
                         <View style={{
@@ -65,7 +74,22 @@ export default function ChuyenTien2({ navigation, route }) {
                             <Text style={{ fontSize: 10, color: '#bf1b72', fontWeight: 'bold' }}>Chọn thiệp</Text>
                         </View>
                     </View>
+                    <FlatList style={{width: '100%'}}
+                        data={messages}
+                        renderItem={({item}) => {
+                            return (
+                                <TouchableOpacity style={{padding: 10, backgroundColor: '#f0f0f0', margin: 5, borderRadius: 20}}
+                                    onPress={() => {setMessage(item.value)}}
+                                >
+                                    <Text>{item.value}</Text>
+                                </TouchableOpacity>
+                            )
+                        }}
+                        numColumns={2}
+                    ></FlatList>
+                    
                 </View>
+                
             </View>
             <View style={{width: '100%', paddingVertical: 5, paddingHorizontal: 10}}>
                 <View style={{flexDirection: 'row'}}>
@@ -131,7 +155,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#bf1b72',
         width: 'auto',
         textAlign: 'center',
-        width: '30%',
+        width: 'auto',
         height: 30,
         marginTop: 10,
         fontSize: 25,

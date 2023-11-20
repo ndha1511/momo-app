@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Context } from "../../App";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function Success({ navigation, route }) {
+export default function Fail({ navigation, route }) {
     const { money, item, currentDate, currentTimeLong } = route.params;
     const { user, setUser } = useContext(Context);
     const formattedAmount = new Intl.NumberFormat('vi-VN', {
@@ -32,14 +32,14 @@ export default function Success({ navigation, route }) {
                 justifyContent: 'center', alignItems: 'center', padding: 20, borderWidth: 2, borderColor: "#f0f0f0", width: 400,
                 marginTop: 40, borderStyle: "solid", borderRadius: 10
             }}>
-                <Image source={require("../imgs/icon/success.png")} style={{ width: 50, height: 50, marginBottom: 10 }}></Image>
-                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Giao dịch thành công</Text>
+                <Image source={require("../imgs/icon/fail.png")} style={{ width: 50, height: 50, marginBottom: 10 }}></Image>
+                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Giao dịch thất bại</Text>
                 <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{formattedMoney}</Text>
                 <View style={{
                     width: 350, height: 50, justifyContent: 'center', alignItems: 'center',
-                    backgroundColor: '#f0f7fd', marginTop: 20, borderRadius: 10
+                    backgroundColor: '#fff7fa', marginTop: 20, borderRadius: 10
                 }}>
-                    <Text>Bạn đã chuyển thành công {formattedMoney} cho {item.fullName}</Text>
+                    <Text>Chuyển không thành công {formattedMoney} cho {item.fullName}</Text>
                 </View>
                 <View style={[styles.row, styles.boder_row]}>
                     <Text style={styles.txt_left}>Thời gian thanh toán</Text>
@@ -60,6 +60,7 @@ export default function Success({ navigation, route }) {
                     <Text style={[styles.txt_size, {color: '#0670d5'}]}>Bấm để nhận email</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btn_bottom, {borderWidth: 2, borderColor: '#bf1b72', borderRadius: 20}]} onPress={() => navigation.navigate('ChuyenTien')}>
+                    
                     <Text style={[styles.txt_size, {color: '#bf1b72'}]}>+ Tạo giao dịch mới</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btn_bottom, {backgroundColor: '#bf1b72', borderRadius: 20}]}

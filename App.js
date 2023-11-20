@@ -19,7 +19,7 @@ import Success from './src/views/Success';
 import Lsgd from './src/views/Lsgd';
 import Fail from './src/views/Fail';
 import ChiTietgd from './src/views/ChiTietgd';
-
+import Search from './src/views/search';
 
 
 
@@ -121,6 +121,7 @@ export default function App() {
           <Stack.Screen name='ctgd' component={ChiTietgd} />
           <Stack.Screen name="AllService" component={AllService} />
           <Stack.Screen name="MyGift" component={MyGift} />
+          <Stack.Screen name="sreach" component={Search} />
         </Stack.Navigator>
 
       </NavigationContainer>

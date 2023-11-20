@@ -12,6 +12,7 @@ export default function Detail({ navigation, route }) {
     const [data, setData] = useState({});
     const [MyDiscount, setMyDiscount] = useState();
     const [isCheck, setIsCheck] = useState(false);
+ 
     const handleCheckAvalable = (id) => {
         if(MyDiscount!==undefined){
             if (  MyDiscount.discounts !== undefined) {
@@ -50,7 +51,7 @@ export default function Detail({ navigation, route }) {
           console.log('MyDiscount before:', MyDiscount);
       
           if (handleCheckAvalable(data.id) === false) {
-            // Cập nhật trạng thái
+         
            
               const newMyDiscount = { ...MyDiscount };
       

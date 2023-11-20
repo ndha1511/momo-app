@@ -61,7 +61,7 @@ export default function DataItem({ dataItem, navigation }) {
 
 
 return (
-  <TouchableOpacity style={styles.data_item} key={dataItem.id} onPress={() => navigation.push('Detail', { 'id': dataItem.id ,'setMyDiscount':setMyDiscount})}>
+  <TouchableOpacity style={styles.data_item} key={dataItem.id} onPress={() => navigation.navigate('Detail', { 'id': dataItem.id ,'setMyDiscount':setMyDiscount})}>
     <Image source={{ uri: dataItem.image }} style={styles.image_data} />
     <View style={{ width: '100%', height: '40%', paddingLeft: 5 }}>
       <View style={{ flexDirection: 'row', width: '100%', height: '20%', alignItems: 'center', justifyContent: 'flex-start' }}>
@@ -78,7 +78,7 @@ return (
             addMyDiscount({dataItem});
             
           }}>
-          <Text style={{ color: '#eb2d9d', fontWeight: 'bold' }}>{handleCheckAvalable(dataItem.id) === true ? "Dùng ngay" : "Thu thập"} </Text>
+          <Text style={{ color: '#eb2d9d', fontWeight: 'bold' }}>{handleCheckAvalable(dataItem.id.toString()) === true ? "Dùng ngay" : "Thu thập"} </Text>
         </TouchableOpacity>
       </View>
     </View>

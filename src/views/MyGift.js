@@ -60,6 +60,7 @@ export default function MyGift({ navigation, route }) {
                                 shadowRadius: 5, 
                                  padding: 10,
                                  marginVertical: 10,
+                                 backgroundColor:'white'
                             }}
                         >
                             <View style={{
@@ -69,6 +70,7 @@ export default function MyGift({ navigation, route }) {
                                 borderRadius: 10,
                                 overflow: 'hidden',
                                 elevation: 5,
+                                backgroundColor:'white'
                             }}>
                                 <Image source={{ uri: dataItem.icon }} style={{ height: '50%', width: '100%', resizeMode: 'contain' }} />
                                 <Text style={{ width: '100%', textAlign: 'center', fontWeight: 'bold' }}>{dataItem.name}</Text>
@@ -80,6 +82,7 @@ export default function MyGift({ navigation, route }) {
                                 borderRadius: 10,
                                 overflow: 'hidden',
                                 elevation: 5, 
+                                backgroundColor:'white'
                             }}>
                                 <Text style={{ width: '100%', fontWeight: 'bold' }}>{dataItem.name}</Text>
                                 <Text style={{ width: '100%' }}>{dataItem.des}</Text>

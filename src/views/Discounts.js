@@ -67,6 +67,7 @@ const AllDataTab = ({ data }) => (
     ))}
   </View>
 );
+
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 export const  MyDiscountContext = createContext();
@@ -75,8 +76,11 @@ export default function Discount({ navigation,route }) {
   const [data, setData] = useState([])
   const [data_all, setDataAll] = useState([])
   const [activeTab, setActiveTab] = useState(1);
+  const [activeData, setActiveData] = useState(data_all);
+
   const [MyDiscount, setMyDiscount] = useState({});
   const { user, setUser } = useContext(Context);
+  const data_new=data_all.sort((a, b) => a.id < b.id ? -1 :1 );
   const updateValue = (value) => {
     setMyDiscount(value);
   };
@@ -116,7 +120,9 @@ export default function Discount({ navigation,route }) {
 
       }
     },[]);
-
+    useEffect(() => {
+      setActiveData(activeTab === 1 ? data_all : [...data_all].sort((a, b) => a.id < b.id ? 1 : -1));
+    }, [activeTab, data_all]);
     
     
 
@@ -128,7 +134,7 @@ export default function Discount({ navigation,route }) {
     <View style={styles.container}>
       <ScrollView style={{ width: '100%' }} >
         <View style={[styles.header]}>
-          <TouchableOpacity style={styles.input_search}>
+          <TouchableOpacity style={styles.input_search} >
             <Image
               source={require('../imgs/icon/kinh-lup.png')}
               style={{ height: '60%', width: '10%', resizeMode: 'contain' }}
@@ -251,8 +257,8 @@ export default function Discount({ navigation,route }) {
               </TouchableOpacity>
             </View>
             <View style={{ backgroundColor: '#F1F1F3', justifyContent: 'center', width: '100%' }}>
-              {activeTab === 1 && <AllDataTab data={data_all} />}
-              {activeTab === 2 && <AllDataTab data={data_all} />}
+              {activeTab === 1 && <AllDataTab data={activeData} />}
+              {activeTab === 2 && <AllDataTab data={activeData} />}
             </View>
           </SafeAreaView>
         </View>
